@@ -1,9 +1,9 @@
 # Versions based on
-# https://dl.espressif.com/dl/esp-idf/espidf.constraints.v6.0.txt
+# https://dl.espressif.com/dl/esp-idf/espidf.constraints.v6.1.txt
 # on 2026-09-04.
 #
 # Versions found by running this script:
-# ./pkgs/esp-idf/update-python-packages.sh v6.0.3
+# ./pkgs/esp-idf/update-python-packages.sh v6.1
 {
   fetchPypi,
   fetchurl,
@@ -380,6 +380,59 @@ rec {
 
     meta = {
       homepage = "https://github.com/espressif/esp-pylib";
+    };
+  };
+
+  esp-idf-sbom = buildPythonPackage rec {
+    pname = "esp-idf-sbom";
+    version = "1.3.1";
+    pyproject = true;
+
+    src = fetchPypi {
+      inherit version;
+      pname = "esp_idf_sbom";
+      sha256 = "sha256-3SRNWfX7rx8FU4gItWtCsvQq50oC12C8T/xugTLLZjs=";
+    };
+
+    build-system = [
+      setuptools
+    ];
+
+    doCheck = false;
+
+    propagatedBuildInputs = [
+      pyyaml
+      schema
+      license-expression
+      rich
+      pyparsing
+      esp-pylib
+    ];
+
+    meta = {
+      homepage = "https://github.com/espressif/esp-idf-sbom";
+    };
+  };
+
+  idf-drivers-gdb = buildPythonPackage rec {
+    pname = "idf-drivers-gdb";
+    version = "0.1.1";
+    pyproject = true;
+
+    src = fetchPypi {
+      inherit version;
+      pname = "idf_drivers_gdb";
+      sha256 = "sha256-3Jct+5sQawuIO0G7+MPtnL7oqXNnx17uq3csVzyEVcA=";
+    };
+
+    build-system = [
+      setuptools
+    ];
+
+    doCheck = false;
+
+    meta = {
+      homepage = "https://github.com/espressif/idf-drivers-gdb";
     };
   };
 }

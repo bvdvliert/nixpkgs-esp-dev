@@ -1,8 +1,8 @@
 {
   owner ? "espressif",
   repo ? "esp-idf",
-  rev ? "v6.0.3",
-  sha256 ? "sha256-EPfmoivXCiEs3acc8ClJujCDtlePoG7kIj/mXmZtN24=",
+  rev ? "v6.1",
+  sha256 ? "sha256-6+mPhof81Yrre8CFar33ufzmPHedSnVfTG5G9A6MbYM=",
   toolsToInclude ? [
     "xtensa-esp-elf-gdb"
     "riscv32-esp-elf-gdb"
@@ -85,8 +85,8 @@ let
         esp-idf-size
         esp-idf-diag
         esp-idf-panic-decoder
+        esp-idf-sbom
         pyclang
-        psutil
         construct
         rich
         psutil
@@ -99,6 +99,7 @@ let
 
         # gdb extensions dependencies
         freertos_gdb
+        idf-drivers-gdb
 
         # The esp idf vscode extension seems to want pip, too
         pip
