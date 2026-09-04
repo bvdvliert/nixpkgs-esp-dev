@@ -1,8 +1,9 @@
 {
   owner ? "espressif",
   repo ? "esp-idf",
-  rev ? "v6.0.2",
-  sha256 ? "sha256-dVdJ+aUjMJyWoz+wOwA0R6XH3JRq0VBpC1sAH/aLECs=",
+  rev ? "v6.0.3",
+  # sha256 ? "sha256-EPfmoivXCiEs3acc8ClJujCDtlePoG7kIj/mXmZtN24=",
+  sha256 ? "sha256-6t61i3FEIyly8X9ijZYPxR2zEU6UO42bHveG8CAa9gQ=",
   toolsToInclude ? [
     "xtensa-esp-elf-gdb"
     "riscv32-esp-elf-gdb"
@@ -71,6 +72,7 @@ let
         setuptools
         packaging
         click
+        rich-click
         pyserial
         cryptography
         pyparsing
@@ -78,25 +80,24 @@ let
         idf-component-manager
         esp-coredump
         esptool
-        esp-idf-diag
         esp-idf-kconfig
         esp-idf-monitor
         esp-idf-nvs-partition-gen
-        esp-idf-panic-decoder
         esp-idf-size
-        tree-sitter
-        tree-sitter-grammars.tree-sitter-c
         esp-idf-diag
+        esp-idf-panic-decoder
         pyclang
         psutil
         construct
         rich
         psutil
 
+        # ble's compressed log testing tool
         tree-sitter
         tree-sitter-grammars.tree-sitter-c
         argcomplete
 
+        # gdb extensions dependencies
         freertos_gdb
 
         # The esp idf vscode extension seems to want pip, too
