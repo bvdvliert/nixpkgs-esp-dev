@@ -1,9 +1,9 @@
 # Versions based on
-# https://dl.espressif.com/dl/esp-idf/espidf.constraints.v5.5.txt
-# on 2025-07-18.
+# https://dl.espressif.com/dl/esp-idf/espidf.constraints.v6.0.txt
+# on 2026-09-04.
 #
 # Versions found by running this script:
-# ./pkgs/esp-idf/update-python-packages.sh v6.0.1
+# ./pkgs/esp-idf/update-python-packages.sh v6.0.3
 {
   fetchPypi,
   fetchurl,
@@ -13,13 +13,13 @@ with pythonPackages;
 rec {
   idf-component-manager = buildPythonPackage rec {
     pname = "idf-component-manager";
-    version = "3.0.2";
+    version = "3.1.2";
     pyproject = true;
 
     src = fetchPypi {
       inherit version;
       pname = "idf_component_manager";
-      sha256 = "sha256-GZ1MJbJNdCwtuzCYREsorKacEzzUkpDIXeC+AzkWbJQ=";
+      sha256 = "sha256-da2eRFLRv0K+oKd9cq9nlxTiuxR2J9kmzuEUEituM6A=";
     };
 
     build-system = [
@@ -51,6 +51,11 @@ rec {
       tqdm
       typing-extensions
       truststore
+
+      rich
+      rich-click
+      esp-pylib
+      pathvalidate
     ]
     ++ cachecontrol.optional-dependencies.filecache;
 
@@ -61,13 +66,13 @@ rec {
 
   esp-coredump = buildPythonPackage rec {
     pname = "esp-coredump";
-    version = "1.16.0";
+    version = "1.17.1";
     pyproject = true;
 
     src = fetchPypi {
       inherit version;
       pname = "esp_coredump";
-      sha256 = "sha256-1Jog+q8+sXh4/7NRtYHrfjLUeTPU0KFIkAxck2HoNUs=";
+      sha256 = "sha256-we4ONvF1T2r2KjATEqZoxCYgATgvPEf+qNuOLsnyPUc=";
     };
 
     build-system = [
@@ -89,7 +94,7 @@ rec {
 
   esptool = buildPythonPackage rec {
     pname = "esptool";
-    version = "5.3.dev2";
+    version = "5.4.0";
     pyproject = true;
 
     build-system = [
@@ -98,7 +103,7 @@ rec {
 
     src = fetchPypi {
       inherit pname version;
-      sha256 = "sha256-EExxdDegGiSJk6qf0bYUUVkelWN/iMmhVe/or0t6XZc=";
+      sha256 = "sha256-/XVlmNsKJsmXX6GFEbCGh8VL8s5zIu3oDPH1EX2tH1A=";
     };
 
     doCheck = false;
@@ -112,6 +117,8 @@ rec {
       pyyaml
       rich-click
       click
+      textual
+      esp-pylib
     ];
 
     # Replaces esptool.py import with .esptool.py-wrapped
@@ -135,7 +142,7 @@ rec {
 
   esp-idf-kconfig = buildPythonPackage rec {
     pname = "esp-idf-kconfig";
-    version = "3.8.1";
+    version = "3.12.0";
     pyproject = true;
 
     build-system = [
@@ -145,7 +152,7 @@ rec {
     src = fetchPypi {
       inherit version;
       pname = "esp_idf_kconfig";
-      sha256 = "sha256-Ska7+/apSvI0dcsYpbomjppD9rnZ7Oj0LLGfs+mz+o8=";
+      sha256 = "sha256-oKvXk6PocshqsKN85UQtWPnl0wNtZBld9/VW14e8/JU=";
     };
 
     doCheck = false;
@@ -153,6 +160,8 @@ rec {
     propagatedBuildInputs = [
       rich
       pyparsing
+      textual
+      esp-pylib
     ];
 
     meta = {
@@ -162,13 +171,13 @@ rec {
 
   esp-idf-monitor = buildPythonPackage rec {
     pname = "esp-idf-monitor";
-    version = "1.9.0";
+    version = "1.10.0";
     pyproject = true;
 
     src = fetchPypi {
       inherit version;
       pname = "esp_idf_monitor";
-      sha256 = "sha256-DDjaDD04PUtjBYY7jfjqbgkwOtWm1bqSznGzHxz3AM4=";
+      sha256 = "sha256-ettpJ6/aqoVG+0uO7XptIMypsKqAz6WDnYAXG47XkPU=";
     };
 
     build-system = [
@@ -191,7 +200,7 @@ rec {
 
   esp-idf-size = buildPythonPackage rec {
     pname = "esp-idf-size";
-    version = "2.2.0";
+    version = "2.3.1";
     pyproject = true;
 
     build-system = [
@@ -201,7 +210,7 @@ rec {
     src = fetchPypi {
       inherit version;
       pname = "esp_idf_size";
-      sha256 = "sha256-Sxl+j9Ece8Y/TfF51gs2IrQR9epNuTORG4nNpa433d8=";
+      sha256 = "sha256-OU4waWUeCAgYhIdDLDi/+HqOWkkRWf+LSv1Hqzu5wZw=";
     };
 
     doCheck = false;
@@ -209,6 +218,8 @@ rec {
     propagatedBuildInputs = [
       rich
       pyyaml
+      rich-click
+      esp-pylib
     ];
 
     meta = {
@@ -244,7 +255,7 @@ rec {
 
   pyclang = buildPythonPackage rec {
     pname = "pyclang";
-    version = "0.6.3";
+    version = "0.7.0";
     pyproject = true;
 
     build-system = [
@@ -253,10 +264,15 @@ rec {
 
     src = fetchPypi {
       inherit pname version;
-      sha256 = "sha256-CxFRwZhiGfQcuRpXcyQQlejSKD/qqPlHyYnGWE/E1Wo=";
+      sha256 = "sha256-s9SHh7tnSJFk0G7wNDMo1lGDG0Xw62fg/skiHvompfU=";
     };
 
     doCheck = false;
+
+    propagatedBuildInputs = [
+      esp-pylib
+      rich
+    ];
 
     meta = {
       homepage = "https://pypi.org/project/pyclang/";
@@ -335,6 +351,35 @@ rec {
     meta = {
       homepage = "https://github.com/espressif/esp-idf-diag";
       description = "Diagnostic tool for ESP-IDF";
+    };
+  };
+
+  esp-pylib = buildPythonPackage rec {
+    pname = "esp-pylib";
+    version = "1.1.4";
+    pyproject = true;
+
+    src = fetchPypi {
+      inherit version;
+      pname = "esp_pylib";
+      sha256 = "sha256-3L1xfooNcTnRjCg1K2N/DucPyOQPDbHAkHlsn60WyJo=";
+    };
+
+    build-system = [
+      setuptools
+    ];
+
+    doCheck = false;
+
+    propagatedBuildInputs = [
+      rich
+      textual
+      rich-click
+      # click
+    ];
+
+    meta = {
+      homepage = "https://github.com/espressif/esp-pylib";
     };
   };
 }

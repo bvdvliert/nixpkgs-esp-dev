@@ -2,8 +2,7 @@
   owner ? "espressif",
   repo ? "esp-idf",
   rev ? "v6.0.3",
-  # sha256 ? "sha256-EPfmoivXCiEs3acc8ClJujCDtlePoG7kIj/mXmZtN24=",
-  sha256 ? "sha256-6t61i3FEIyly8X9ijZYPxR2zEU6UO42bHveG8CAa9gQ=",
+  sha256 ? "sha256-EPfmoivXCiEs3acc8ClJujCDtlePoG7kIj/mXmZtN24=",
   toolsToInclude ? [
     "xtensa-esp-elf-gdb"
     "riscv32-esp-elf-gdb"
@@ -91,6 +90,7 @@ let
         construct
         rich
         psutil
+        websockets # required to satisfy runtime check of 'esp-pylib[ide]'
 
         # ble's compressed log testing tool
         tree-sitter
