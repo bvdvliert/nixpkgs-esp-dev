@@ -36,6 +36,7 @@
             gcc-xtensa-lx106-elf-bin
             # esp8266-rtos-sdk # Broken
             esp8266-nonos-sdk
+            qemu-esp32
             ;
         };
 
@@ -46,6 +47,7 @@
           esp-idf-xtensa = import ./shells/esp-idf-xtensa.nix { inherit pkgs; };
           # esp8266-rtos-sdk = import ./shells/esp8266-rtos-sdk.nix { inherit pkgs; }; # Broken
           esp8266-nonos-sdk = import ./shells/esp8266-nonos-sdk.nix { inherit pkgs; };
+          qemu-esp32 = import ./shells/qemu-esp32.nix { inherit pkgs; };
         };
 
         checks =
