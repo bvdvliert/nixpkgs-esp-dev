@@ -35,6 +35,7 @@
       buildInputs ? [ ],
       postInstall ? "",
       meta ? { },
+      patches ? { },
       ...
     }:
     {
@@ -65,6 +66,12 @@
         "--enable-gcrypt"
         "--enable-slirp"
       ];
+
+      # This patch in currently locked nixpkgs is for a newer version of qemu
+      # than the base of this fork, so filter it out.
+      patches = builtins.filter (
+        x: builtins.baseNameOf x != "fix-tls-tests-without-tasn1.patch"
+      ) patches;
 
       buildInputs = buildInputs ++ [
         libgcrypt
